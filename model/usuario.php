@@ -71,7 +71,7 @@ class Usuario
         return (new Conexao())->conexao();
     }
 
-    public function inserir() {
+      public function inserir() {
         $pdo = self::getConexao();
 
         $sql = "INSERT INTO `usuarios` (`nome`, `email`, `senha`, `ativo`, `id_perfil`) 
@@ -94,15 +94,21 @@ class Usuario
     }
 }
 
+///--- Teste inserir usuario
+$usuario1 = new Usuario(
+    nome: "Apollo", 
+    email: "apollo@gmail.com", 
+    senhaHash: 123, 
+    idPerfil:1, 
+    ativo: true 
+);
 
+// $usuario1->nome = "Apollo David";
+// echo $usuario1->nome;
+// echo $usuario1->senhaHash ."<br>";
+// $usuario1->senhaHash = 123;
+// echo $usuario1->senhaHash;
 
-
-$usuario1 = new Usuario(nome: "Apollo", email: "apollo@gmail.com", senhaHash: 123, idPerfil:1, ativo: true );
-
-$usuario1->nome = "Apollo David";
-echo $usuario1->nome;
-echo $usuario1->senhaHash ."<br>";
-$usuario1->senhaHash = 123;
-echo $usuario1->senhaHash;
+$usuario1->inserir();
 
 ?>
