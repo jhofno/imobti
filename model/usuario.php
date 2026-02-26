@@ -164,8 +164,13 @@ class Usuario
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
+
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        if(!$row){
+            throw new Exception("Id do usuário Não encontrado");
+            return null;
+        }
 
         $usuario = new Usuario(
             id: $row['id_usuario'],
@@ -200,4 +205,10 @@ class Usuario
 
 
 echo "<pre>";
-print_r(Usuario::buscarPorId(11));
+
+try{
+    print_r(Usuario::buscarPorId(1));
+
+}catch(Exception $err){
+    echo $err->getMessage();
+}
